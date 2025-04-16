@@ -2,21 +2,24 @@ import React from "react";
 import dayjs from "dayjs";
 import events from "../../data/events.json"; 
 
-// Function to check if events overlap
 const doesOverlap = (event1, event2) => {
   const start1 = dayjs(`${event1.date} ${event1.time}`);
   const end1 = start1.add(parseInt(event1.duration), "hour");
   const start2 = dayjs(`${event2.date} ${event2.time}`);
   const end2 = start2.add(parseInt(event2.duration), "hour");
 
-  return start1.isBefore(end2) && end1.isAfter(start2); // Check if times overlap
+  return start1.isBefore(end2) && end1.isAfter(start2);
 };
 
 const EventHighlightBox = ({ darkMode, currentDate, today }) => {
   if (!events || events.length === 0) {
     return (
       <div
-        className={`rounded-lg shadow-md p-6 mb-4 border ${darkMode ? "bg-gray-800 border-pink-400" : "bg-gray-100 border-pink-300"}`}
+        className={`rounded-lg p-6 mb-4 border ${
+          darkMode
+            ? "bg-gray-800 border-pink-400 shadow-[0_0_15px_#FF00FF]"
+            : "bg-gray-100 border-pink-300"
+        }`}
       >
         <h2 className={`text-xl font-bold mb-4 ${darkMode ? "text-pink-400" : "text-pink-600"}`}>
           Event List
@@ -26,7 +29,6 @@ const EventHighlightBox = ({ darkMode, currentDate, today }) => {
     );
   }
 
-  // Filter upcoming events
   const upcomingEvents = events
     .filter((event) => {
       const eventDateTime = dayjs(`${event.date} ${event.time}`);
@@ -39,9 +41,15 @@ const EventHighlightBox = ({ darkMode, currentDate, today }) => {
 
   return (
     <div
-      className={`rounded-lg shadow-md p-6 mb-4 border ${darkMode ? "bg-gray-800 border-pink-400 shadow-[0_0_20px_#FF00FF]" : "bg-gray-100 border-pink-300"}`}
+      className={`rounded-lg p-6 mb-6 border relative z-10 ${
+        darkMode
+          ? "bg-gray-900 border-pink-400 shadow-[0_0_20px_#FF00FF] backdrop-blur-md"
+          : "bg-pink-50 border-pink-300 shadow-md"
+      }`}
     >
-      <h2 className={`text-xl font-bold mb-4 ${darkMode ? "text-pink-400" : "text-pink-600"}`}>Event List</h2>
+      <h2 className={`text-xl font-bold mb-4 ${darkMode ? "text-pink-400" : "text-pink-600"}`}>
+        Event List
+      </h2>
 
       <div className="max-h-64 overflow-y-auto pr-2 space-y-4">
         {upcomingEvents.length === 0 ? (
@@ -51,7 +59,6 @@ const EventHighlightBox = ({ darkMode, currentDate, today }) => {
             const eventDateTime = dayjs(`${event.date} ${event.time}`);
             const sameDayEvents = events.filter((e) => e.date === event.date);
 
-            // Check for conflicts
             const conflicts = sameDayEvents.filter(
               (e) => e.id !== event.id && doesOverlap(event, e)
             );
@@ -64,7 +71,7 @@ const EventHighlightBox = ({ darkMode, currentDate, today }) => {
                   darkMode
                     ? isConflict
                       ? "bg-red-800/30 border-red-500 shadow-md"
-                      : "bg-gray-700 border-pink-500 hover:bg-pink-700/30"
+                      : "bg-gray-800 border-pink-400 hover:bg-pink-700/30 shadow-[0_0_10px_#FF00FF]/60"
                     : isConflict
                     ? "bg-red-100 border-red-400 shadow"
                     : "bg-white border-pink-300 hover:bg-pink-200"
@@ -83,11 +90,10 @@ const EventHighlightBox = ({ darkMode, currentDate, today }) => {
                         ? "#ff4d4d"
                         : "#b91c1c"
                       : event.date === dayjs().format("YYYY-MM-DD")
-                      ? "#00bfff" 
+                      ? "#00bfff"
                       : darkMode
                       ? "#39FF14"
                       : "#db2777",
-                    textDecoration: event.date === dayjs().format("YYYY-MM-DD") ? "tranform-none" : "none",
                   }}
                 >
                   {event.date === dayjs().format("YYYY-MM-DD") ? (

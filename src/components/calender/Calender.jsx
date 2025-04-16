@@ -37,17 +37,20 @@ const Calendar = () => {
       days.push(
         <div
           key={day.format("DD-MM-YYYY")}
-          className={`border p-2 h-24 overflow-hidden relative rounded-md backdrop-blur-md text-xs ${
+          className={`border p-2 h-24 overflow-hidden relative rounded-md text-xs ${
             day.isSame(today, "day")
-              ? "bg-gradient-to-br from-[#0ff]/20 to-[#ff0]/20 border-[#0ff] shadow-inner shadow-[#0ff]"
+              ? darkMode
+                ? "bg-gradient-to-br from-[#0ff]/20 to-[#ff0]/20 border-2 border-[#0ff] shadow-[0_0_10px_#0ff,0_0_20px_#ff0] backdrop-blur-sm bg-opacity-30 text-[#39FF14]"
+                : "bg-gradient-to-br from-pink-100/30 to-pink-200/30 border-2 border-pink-400 shadow-inner shadow-pink-200 backdrop-blur-md text-pink-700"
               : darkMode
               ? "bg-black border-[#333] text-[#39FF14]"
               : "bg-white border-gray-300 text-black"
           }`}
         >
-          <div className="text-sm font-semibold mb-[3px]">{day.format(dateFormat)}</div>
-<div className="absolute top-8 left-1 right-1 space-y-1 overflow-y-auto max-h-[4.5rem] pr-1">
-
+          <div className="text-sm font-semibold mb-[3px]">
+            {day.format(dateFormat)}
+          </div>
+          <div className="absolute top-8 left-1 right-1 space-y-1 overflow-y-auto max-h-[3.5rem] pr-1">
             {dayEvents.map((event, i) => {
               const conflicts = dayEvents.filter(
                 (e) => e.id !== event.id && doesOverlap(event, e)
@@ -56,7 +59,7 @@ const Calendar = () => {
               return (
                 <div
                   key={`${event.id}-${i}`}
-                  className="px-1 py-0.5 rounded truncate font-medium"
+                  className="px-1 py-0.5 rounded truncate font-semibold"
                   title={
                     isConflict
                       ? `⚠️ Conflict with ${conflicts
@@ -67,10 +70,16 @@ const Calendar = () => {
                   style={{
                     backgroundColor: /^#[0-9A-F]{6}$/i.test(event.color)
                       ? event.color
-                      : "#39FF14", // neon green default
-                    color: isConflict ? "#ff0000" : "#0ff", // cyan or red for conflict
-                    border: isConflict ? "1px solid #ff0000" : "1px solid #0ff", // electric blue border
-                    boxShadow: "0 0 6px rgba(0,255,255,0.7)", // glow
+                      : "#39FF14", // fallback neon green
+                    color: darkMode
+                      ? isConflict
+                        ? "#ff4b4b"
+                        : "white" // neon cyan for contrast
+                      : isConflict
+                      ? "#b91c1c"
+                      : "#1e1e1e", // darker gray for light mode
+                    border: isConflict ? "1px solid #dc2626" : "none",
+                    textShadow: darkMode ? "0 0 5px #0ff" : "none",
                   }}
                 >
                   {event.title} {isConflict && "⚠️"}
@@ -110,9 +119,7 @@ const Calendar = () => {
       {/* Sidebar */}
       <aside
         className={`w-64 p-4 hidden md:block shadow-md ${
-          darkMode
-            ? "bg-gray-800 text-white "
-            : "bg-gray-100 text-black "
+          darkMode ? "bg-gray-800 text-white " : "bg-gray-100 text-black "
         }`}
       >
         <h2 className="text-xl font-bold mb-4"> Calendar</h2>
@@ -165,7 +172,7 @@ const Calendar = () => {
               darkMode ? "text-pink-400" : "text-pink-600"
             }`}
           >
-            Upcoming & Today’s Events
+            Event List
           </h2>
           <div className="max-h-64 overflow-y-auto pr-2 space-y-4">
             {events
@@ -218,16 +225,27 @@ const Calendar = () => {
                           ? darkMode
                             ? "#ff4d4d"
                             : "#b91c1c"
+                          : event.date === dayjs().format("YYYY-MM-DD")
+                          ? "#00bfff" // Neon blue for "Today"
                           : darkMode
                           ? "#39FF14"
                           : "#db2777",
+                        textDecoration:
+                          event.date === dayjs().format("YYYY-MM-DD")
+                            ? "tranform-none"
+                            : "none",
                       }}
                     >
-                      {event.date === dayjs().format("YYYY-MM-DD")
-                        ? "Today"
-                        : "Upcoming"}
+                      {event.date === dayjs().format("YYYY-MM-DD") ? (
+                        <span className="px-2 py-0.5 text-[10px] bg-[#00bfff]/20 text-[#00bfff] border border-[#00bfff] rounded-full font-bold tracking-wide shadow-[0_0_6px_#00bfff]">
+                          Today
+                        </span>
+                      ) : (
+                        "Upcoming"
+                      )}
                       {isConflict && " ⚠️"}
                     </p>
+
                     <h3 className="text-lg font-semibold">
                       {event.title}{" "}
                       {isConflict && (

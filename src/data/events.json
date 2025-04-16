@@ -4,7 +4,7 @@
       "title": "Survey Sparrow Assessment Submission",
       "date": "2025-04-18",
       "time": "23:59",
-      "duration": "1h",
+      "duration": "1hr",
       "color": "#ff0157"
     },
     {
@@ -12,7 +12,7 @@
       "title": "Code Edit",
       "date": "2025-04-18",
       "time": "17:00",
-      "duration": "2h",
+      "duration": "2hr",
       "color": "#FF6EC7"
     },
     {
@@ -20,7 +20,7 @@
       "title": "RST Assessment",
       "date": "2025-04-20",
       "time": "15:00",
-      "duration": "2h",
+      "duration": "2hr",
       "color": "#FFFF33"
     },
     {
@@ -28,7 +28,7 @@
       "title": "Presentation",
       "date": "2025-04-17",
       "time": "15:00",
-      "duration": "2h",
+      "duration": "2hr",
        "color": "#ff5650"
     },
     {
@@ -36,7 +36,7 @@
       "title": "RP Evaluation",
       "date": "2025-05-06",
       "time": "10:00",
-      "duration": "2h",
+      "duration": "2hr",
       "color": "#FF00FF"
     },
     {
@@ -44,7 +44,7 @@
       "title": "DUS Assessment",
       "date": "2025-04-20",
       "time": "16:00",
-      "duration": "2h",
+      "duration": "2hr",
       "color": "#00FFFF"
     },
     {
@@ -52,7 +52,7 @@
       "title": "Game Code Complete",
       "date": "2025-04-22",
       "time": "16:00",
-      "duration": "1h",
+      "duration": "1hr",
       "color": "#F8F32B"
     },
     {
@@ -60,7 +60,7 @@
       "title": "RP Final Draft Report",
       "date": "2025-04-22",
       "time": "17:00",
-      "duration": "2h",
+      "duration": "2hr",
       "color": "#40E0D0"
     },
     {
@@ -68,7 +68,7 @@
       "title": "Meeting with Guide",
       "date": "2025-04-22",
       "time": "19:00",
-      "duration": "2h",
+      "duration": "2hr",
       "color": "#8A2BE2"
     },
     {
@@ -76,8 +76,16 @@
       "title": "Swimming",
       "date": "2025-04-22",
       "time": "20:00",
-      "duration": "2h",
+      "duration": "2hr",
       "color": "#DA70D6"
+    },
+    {
+      "id": 11,
+      "title": "Survey Sparrow Assessment Submission",
+      "date": "2025-04-16",
+      "time": "23:59",
+      "duration": "1hr",
+      "color": "#ff0157"
     }
   ]
   

@@ -6,6 +6,7 @@ import "tailwindcss/tailwind.css";
 import Sidebar from "./Sidebar";
 import EventHighlightBox from "./EventHighlightBox";
 import EventTag from "./EventTag";
+import CalenderGrid from "./CalenderGrid";
 import events from "../../data/events.json";
 dayjs.extend(isSameOrAfter);
 
@@ -36,19 +37,19 @@ const Calendar = () => {
     for (let i = 0; i < 7; i++) {
       // Define dayEvents for the current day in the loop
       const dayEvents = events.filter((e) => dayjs(e.date).isSame(day, "day"));
-
       days.push(
         <div
           key={day.format("DD-MM-YYYY")}
-          className={`border p-2 h-24 overflow-hidden relative rounded-md text-xs ${
-            day.isSame(today, "day")
-              ? darkMode
-                ? "bg-gradient-to-br from-[#0ff]/20 to-[#ff0]/20 border-2 border-[#0ff] shadow-[0_0_10px_#0ff,0_0_20px_#ff0] backdrop-blur-sm bg-opacity-30 text-[#39FF14]"
-                : "bg-gradient-to-br from-pink-100/30 to-pink-200/30 border-2 border-pink-400 shadow-inner shadow-pink-200 backdrop-blur-md text-pink-700"
-              : darkMode
-              ? "bg-black border-[#333] text-[#39FF14]"
-              : "bg-white border-gray-300 text-black"
-          }`}
+          className={`border p-2 h-24 overflow-hidden relative rounded-md text-xs transition duration-300 cursor-pointer 
+            ${
+              day.isSame(today, "day")
+                ? darkMode
+                  ? "bg-gradient-to-br from-[#0ff]/20 to-[#ff0]/20 border-2 border-[#0ff] shadow-[0_0_10px_#0ff,0_0_20px_#ff0] backdrop-blur-sm bg-opacity-30 text-[#39FF14]"
+                  : "bg-gradient-to-br from-pink-100/30 to-pink-200/30 border-2 border-pink-400 shadow-inner shadow-pink-200 backdrop-blur-md text-pink-700"
+                : darkMode
+                ? "bg-black border-[#333] text-[#39FF14] hover:bg-[#111] hover:shadow-[0_0_10px_#FF00FF,0_0_20px_#00f0ff]"
+                : "bg-white border-gray-300 text-black hover:bg-pink-100 hover:shadow-md"
+            }`}
         >
           <div className="text-sm font-semibold mb-[3px]">
             {day.format(dateFormat)}
@@ -71,6 +72,7 @@ const Calendar = () => {
           </div>
         </div>
       );
+
       day = day.add(1, "day");
     }
     rows.push(
@@ -98,8 +100,7 @@ const Calendar = () => {
         darkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
-      {/* Sidebar */}
-      <Sidebar darkMode={darkMode} setDarkMode={setDarkMode} />
+      
 
       {/* Main Content */}
       <main className="flex-1 p-6 overflow-y-auto h-screen">
@@ -111,54 +112,12 @@ const Calendar = () => {
         />
 
         {/* Calendar Container */}
-        <div
-          className={`rounded-lg shadow p-4 w-full border ${
-            darkMode
-              ? "bg-gray-800 border-pink-400 shadow-[0_0_20px_#FF00FF]"
-              : "bg-white border-pink-300 "
-          }`}
-        >
-          {/* Header */}
-          <div className="flex justify-between items-center mb-4">
-            <button
-              onClick={handlePrevMonth}
-              className={`text-4xl ${
-                darkMode
-                  ? "text-pink-400 hover:text-pink-200"
-                  : "text-pink-600 hover:text-pink-800"
-              }`}
-            >
-              <HiArrowCircleLeft />
-            </button>
-            <h2 className="text-2xl font-bold">
-              {currentDate.format("MMMM YYYY")}
-            </h2>
-            <button
-              onClick={handleNextMonth}
-              className={`text-4xl ${
-                darkMode
-                  ? "text-pink-400 hover:text-pink-200"
-                  : "text-pink-600 hover:text-pink-800"
-              }`}
-            >
-              <HiArrowCircleRight />
-            </button>
-          </div>
-
-          {/* Weekdays */}
-          <div
-            className={`grid grid-cols-7 text-center font-bold mb-2 ${
-              darkMode ? "text-pink-300" : "text-pink-600"
-            }`}
-          >
-            {"SMTWTFS".split("").map((d) => (
-              <div key={d}>{d}</div>
-            ))}
-          </div>
-
-          {/* Calendar Grid */}
-          <div className="space-y-2">{rows}</div>
-        </div>
+        <CalenderGrid
+          currentDate={currentDate}
+          setCurrentDate={setCurrentDate}
+          rows={rows}
+          darkMode={darkMode}
+        />
       </main>
     </div>
   );

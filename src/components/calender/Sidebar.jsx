@@ -24,7 +24,7 @@ const Sidebar = ({ darkMode, setDarkMode }) => {
   return (
     <>
       {/* Toggle Button for Mobile */}
-      <div className="lg:hidden fixed top-4 left-4 z-50">
+      <div className="lg:hidden fixed top-4 left-4 z-50 opacity-80">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`p-2 rounded-md text-xl ${

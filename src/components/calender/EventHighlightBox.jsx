@@ -41,12 +41,23 @@ const EventHighlightBox = ({ darkMode, currentDate, today }) => {
 
   return (
     <div
-      className={`rounded-lg p-6 mb-6 border relative z-10 ${
-        darkMode
-          ? "bg-gray-900 border-pink-400 shadow-[0_0_20px_#FF00FF] backdrop-blur-md"
-          : "bg-pink-50 border-pink-300 shadow-md"
-      }`}
-    >
+  className={`relative p-4 rounded-lg w-full overflow-hidden transition-all duration-500 shadow-xl backdrop-blur-md mb-6 ${
+    darkMode ? "bg-black/40 text-white" : "bg-white/30 text-gray-900"
+  }`}
+  style={
+    darkMode
+      ? {
+          boxShadow: `
+            0 0 10px rgba(0, 240, 255, 0.5),
+            0 0 20px rgba(255, 0, 255, 0.4),
+            0 0 50px rgba(255, 20, 147, 0.4)
+          `,
+        }
+      :{
+        border: "1px solid #f472b6", 
+      }
+  }
+>
       <h2 className={`text-xl font-bold mb-4 ${darkMode ? "text-pink-400" : "text-pink-600"}`}>
         Event List
       </h2>

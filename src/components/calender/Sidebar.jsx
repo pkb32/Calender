@@ -55,7 +55,7 @@ const Sidebar = ({ darkMode, setDarkMode }) => {
       >
         <div>
           {/* Logo or Top Title */}
-          <div className="text-2xl font-bold mb-6 px-4">MyDashboard</div>
+          <div className="text-2xl font-bold mb-6 px-4">Admin Panel</div>
 
           {/* Home */}
           <NavLink
@@ -70,14 +70,6 @@ const Sidebar = ({ darkMode, setDarkMode }) => {
 
           {/* Manage */}
           <div className={sectionTitleClass}>Manage</div>
-          <NavLink
-            to="/program"
-            className={navLinkClass}
-            onClick={() => setIsOpen(false)}
-          >
-            <MdEventNote className="mr-3" />
-            Program
-          </NavLink>
           <NavLink
             to="/events"
             className={navLinkClass}

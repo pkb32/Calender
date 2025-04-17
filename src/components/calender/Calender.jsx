@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
-import { HiArrowCircleLeft, HiArrowCircleRight } from "react-icons/hi";
-import "tailwindcss/tailwind.css";
-import Sidebar from "./Sidebar";
 import EventHighlightBox from "./EventHighlightBox";
 import EventTag from "./EventTag";
 import CalenderGrid from "./CalenderGrid";
 import events from "../../data/events.json";
+import { useOutletContext } from "react-router-dom";
 dayjs.extend(isSameOrAfter);
 
 const doesOverlap = (event, otherEvent) => {
@@ -20,7 +18,7 @@ const doesOverlap = (event, otherEvent) => {
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(dayjs());
-  const [darkMode, setDarkMode] = useState(true);
+   const { darkMode } = useOutletContext();
 
   const today = dayjs();
   const startOfMonth = currentDate.startOf("month");

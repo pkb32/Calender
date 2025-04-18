@@ -1,7 +1,8 @@
 import React from "react";
 import dayjs from "dayjs";
-import events from "../../data/events.json"; 
+import events from "../../data/events.json";
 
+{/* Function to check if two events overlap */}
 const doesOverlap = (event1, event2) => {
   const start1 = dayjs(`${event1.date} ${event1.time}`);
   const end1 = start1.add(parseInt(event1.duration), "hour");
@@ -12,6 +13,8 @@ const doesOverlap = (event1, event2) => {
 };
 
 const EventHighlightBox = ({ darkMode, currentDate, today }) => {
+
+  {    /* Check if there are any events and display a message if there are no events */  }
   if (!events || events.length === 0) {
     return (
       <div
@@ -21,7 +24,11 @@ const EventHighlightBox = ({ darkMode, currentDate, today }) => {
             : "bg-gray-100 border-pink-300"
         }`}
       >
-        <h2 className={`text-xl font-bold mb-4 ${darkMode ? "text-pink-400" : "text-pink-600"}`}>
+        <h2
+          className={`text-xl font-bold mb-4 ${
+            darkMode ? "text-pink-400" : "text-pink-600"
+          }`}
+        >
           Event List
         </h2>
         <p className="text-gray-400 text-sm">No events available.</p>
@@ -29,6 +36,7 @@ const EventHighlightBox = ({ darkMode, currentDate, today }) => {
     );
   }
 
+  {    /* Filter and sort events based on date and time */  }
   const upcomingEvents = events
     .filter((event) => {
       const eventDateTime = dayjs(`${event.date} ${event.time}`);
@@ -37,31 +45,40 @@ const EventHighlightBox = ({ darkMode, currentDate, today }) => {
         eventDateTime.isSame(currentDate, "month")
       );
     })
-    .sort((a, b) => dayjs(`${a.date} ${a.time}`).unix() - dayjs(`${b.date} ${b.time}`).unix());
+    .sort(
+      (a, b) =>
+        dayjs(`${a.date} ${a.time}`).unix() -
+        dayjs(`${b.date} ${b.time}`).unix()
+    );
 
   return (
+    // Render the event highlight box
     <div
-  className={`relative p-4 rounded-lg w-full overflow-hidden transition-all duration-500 shadow-xl backdrop-blur-md mb-6 ${
-    darkMode ? "bg-black/40 text-white" : "bg-white/30 text-gray-900"
-  }`}
-  style={
-    darkMode
-      ? {
-          boxShadow: `
+      className={`relative p-4 rounded-lg w-full overflow-hidden transition-all duration-500 shadow-xl backdrop-blur-md mb-6 ${
+        darkMode ? "bg-black/40 text-white" : "bg-white/30 text-gray-900"
+      }`}
+      style={
+        darkMode
+          ? {
+              boxShadow: `
             0 0 10px rgba(0, 240, 255, 0.5),
             0 0 20px rgba(255, 0, 255, 0.4),
             0 0 50px rgba(255, 20, 147, 0.4)
           `,
-        }
-      :{
-        border: "1px solid #f472b6", 
+            }
+          : {
+              border: "1px solid #f472b6",
+            }
       }
-  }
->
-      <h2 className={`text-xl font-bold mb-4 ${darkMode ? "text-pink-400" : "text-pink-600"}`}>
+    >
+      <h2
+        className={`text-xl font-bold mb-4 ${
+          darkMode ? "text-pink-400" : "text-pink-600"
+        }`}
+      >
         Event List
       </h2>
-
+      {/* Render the list of upcoming events */}
       <div className="max-h-64 overflow-y-auto pr-2 space-y-4">
         {upcomingEvents.length === 0 ? (
           <p className="text-gray-400 text-sm">No upcoming events</p>
@@ -76,7 +93,7 @@ const EventHighlightBox = ({ darkMode, currentDate, today }) => {
             const isConflict = conflicts.length > 0;
 
             return (
-              <div
+              <div //check for conflict
                 key={event.id}
                 className={`border rounded-md p-3 transition relative ${
                   darkMode
@@ -89,10 +106,13 @@ const EventHighlightBox = ({ darkMode, currentDate, today }) => {
                 }`}
                 title={
                   isConflict
-                    ? `⚠️ Conflict with ${conflicts.map((c) => c.title).join(", ")}`
+                    ? `⚠️ Conflict with ${conflicts
+                        .map((c) => c.title)
+                        .join(", ")}`
                     : ""
                 }
               >
+                {/*check for conflict and assigns color accordingly in the highlight box and highlight today*/}
                 <p
                   className="font-medium text-sm mb-1"
                   style={{
@@ -120,11 +140,14 @@ const EventHighlightBox = ({ darkMode, currentDate, today }) => {
                 <h3 className="text-lg font-semibold">
                   {event.title}{" "}
                   {isConflict && (
-                    <span className="text-red-500 text-sm ml-1">(Time Clashing)</span>
+                    <span className="text-red-500 text-sm ml-1">
+                      (Time Clashing)
+                    </span>
                   )}
                 </h3>
                 <p className="text-sm">
-                  🕒 {eventDateTime.format("ddd, MMM D · h:mm A")} ({event.duration})
+                  🕒 {eventDateTime.format("ddd, MMM D · h:mm A")} (
+                  {event.duration})
                 </p>
               </div>
             );

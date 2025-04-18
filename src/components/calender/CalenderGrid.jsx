@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const CalendarGrid = ({ currentDate, setCurrentDate, rows, darkMode }) => {
   const handlePrevMonth = () =>
-    setCurrentDate(currentDate.subtract(1, "month"));
+  setCurrentDate(currentDate.subtract(1, "month"));
   const handleNextMonth = () => setCurrentDate(currentDate.add(1, "month"));
 
   return (
@@ -41,7 +41,7 @@ const CalendarGrid = ({ currentDate, setCurrentDate, rows, darkMode }) => {
         }}
       />
 
-      {/* Calendar container with glass effect */}
+      {/* Calendar container */}
       <div
         className={`relative z-10 p-4 rounded-xl backdrop-blur-md shadow-xl transition-all duration-500 ${
           darkMode

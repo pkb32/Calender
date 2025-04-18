@@ -1,16 +1,12 @@
-import React, { useState } from 'react'
-import Calendar from '../calender/Calender'
+import React, { useState } from "react";
+import Calendar from "../calender/Calender";
 
 function Home() {
-  
   return (
     <div className="h-screen w-full">
-        
-      <Calendar  />
-
+      <Calendar />
     </div>
-    
-  )
+  );
 }
 
-export default Home
+export default Home;

@@ -2,6 +2,7 @@ import React from "react";
 import { useOutletContext } from "react-router-dom";
 import { MdNotificationsActive } from "react-icons/md";
 
+//dummy dataset only for example
 const notifications = [
   {
     id: 1,
@@ -18,7 +19,7 @@ const notifications = [
 ];
 
 const NotificationController = () => {
-  const { darkMode } = useOutletContext();
+  const { darkMode } = useOutletContext(); // Access darkMode from the context
 
   return (
     <div
@@ -33,7 +34,7 @@ const NotificationController = () => {
         </h1>
 
         <div className="space-y-4">
-          {notifications.map((note) => (
+          {notifications.map((note) => ( //map to load the notifications
             <div
               key={note.id}
               className={`rounded-lg p-4 transition-all ${

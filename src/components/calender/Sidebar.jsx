@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaHome, FaBell, FaBars } from "react-icons/fa";
-import { MdEventNote, MdEvent } from "react-icons/md";
+import { ImCross } from "react-icons/im";
+import { MdEvent } from "react-icons/md";
 import { HiOutlineChevronDown } from "react-icons/hi";
 
 const Sidebar = ({ darkMode, setDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  {    /* CSS classes */  }
   const sectionTitleClass = darkMode
     ? "text-pink-300 uppercase text-xs px-4 pt-4 pb-2 tracking-wider"
     : "text-pink-600 uppercase text-xs px-4 pt-4 pb-2 tracking-wider";
@@ -23,39 +24,52 @@ const Sidebar = ({ darkMode, setDarkMode }) => {
 
   return (
     <>
-      {/* Toggle Button for Mobile */}
-      <div className="lg:hidden fixed top-4 left-4 z-50 opacity-80">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className={`p-2 rounded-md text-xl ${
-            darkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-black"
-          }`}
-        >
-          <FaBars />
-        </button>
-      </div>
+      {/* Mobile Toggle Button (shows only when sidebar is closed) */}
+      {!isOpen && (
+        <div className="lg:hidden fixed top-4 left-4 z-50 opacity-80">
+          <button
+            onClick={() => setIsOpen(true)}
+            className={`p-2 rounded-md text-xl ${
+              darkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-black"
+            }`}
+          >
+            <FaBars />
+          </button>
+        </div>
+      )}
 
       {/* Sidebar */}
       <aside
         className={`fixed top-0 left-0 h-screen w-64 flex flex-col justify-between p-4 z-40 transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 lg:static lg:flex
-    ${
-      darkMode
-        ? "bg-black text-white lg:bg-black"
-        : "bg-white text-gray-800 lg:bg-white"
-    }
-    ${
-      // Glassmorphism on mobile only
-      isOpen
-        ? "backdrop-blur-lg bg-white/30 dark:bg-black/30 border border-white/20 shadow-xl"
-        : ""
-    }
-  `}
+        ${
+          darkMode
+            ? "bg-black text-white lg:bg-black"
+            : "bg-white text-gray-800 lg:bg-white"
+        }
+        ${
+          isOpen
+            ? "backdrop-blur-lg bg-white/30 dark:bg-black/30 border border-white/20 shadow-xl"
+            : ""
+        }
+      `}
       >
         <div>
-          {/* Logo or Top Title */}
-          <div className="text-2xl font-bold mb-6 px-4">Admin Panel</div>
+          {/* Top Header with Close Button on Mobile */}
+          <div className="flex items-center justify-between mb-6 px-4">
+            <div className="text-2xl font-bold">Admin Panel</div>
+            <div className="lg:hidden">
+              <button
+                onClick={() => setIsOpen(false)}
+                className={`p-2 rounded-md text-xl ${
+                  darkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-black"
+                }`}
+              >
+                <ImCross />
+              </button>
+            </div>
+          </div>
 
           {/* Home */}
           <NavLink

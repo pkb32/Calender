@@ -1,99 +1,98 @@
 [
-    {
-      "id": 1,
-      "title": "Survey Sparrow Assessment Submission",
-      "date": "2025-04-18",
-      "time": "15:00",
-      "duration": "1hr",
-      "color": "#ff0157"
-    },
-    {
-      "id": 2,
-      "title": "Code Edit",
-      "date": "2025-04-18",
-      "time": "17:00",
-      "duration": "2hr",
-      "color": "#FF6EC7"
-    },
-    {
-      "id": 3,
-      "title": "RST Assessment",
-      "date": "2025-04-20",
-      "time": "15:00",
-      "duration": "2hr",
-      "color": "#FFFF33"
-    },
-    {
-      "id": 4,
-      "title": "Presentation",
-      "date": "2025-04-17",
-      "time": "15:00",
-      "duration": "2hr",
-       "color": "#ff5650"
-    },
-    {
-      "id": 5,
-      "title": "RP Evaluation",
-      "date": "2025-05-06",
-      "time": "10:00",
-      "duration": "2hr",
-      "color": "#FF00FF"
-    },
-    {
-      "id": 6,
-      "title": "DUS Assessment",
-      "date": "2025-04-20",
-      "time": "16:00",
-      "duration": "2hr",
-      "color": "#00FFFF"
-    },
-    {
-      "id": 7,
-      "title": "Game Code Complete",
-      "date": "2025-04-22",
-      "time": "16:00",
-      "duration": "1hr",
-      "color": "#F8F32B"
-    },
-    {
-      "id": 8,
-      "title": "RP Final Draft Report",
-      "date": "2025-04-22",
-      "time": "17:00",
-      "duration": "2hr",
-      "color": "#40E0D0"
-    },
-    {
-      "id": 9,
-      "title": "Meeting with Guide",
-      "date": "2025-04-22",
-      "time": "19:00",
-      "duration": "2hr",
-      "color": "#8A2BE2"
-    },
-    {
-      "id": 10,
-      "title": "Swimming",
-      "date": "2025-04-22",
-      "time": "20:00",
-      "duration": "2hr",
-      "color": "#DA70D6"
-    },
-    {
-      "id": 11,
-      "title": "Grand Viva",
-      "date": "2025-05-07",
-      "time": "08:00",
-      "duration": "1hr",
-      "color": "#ff0187"
-    },
-    {
-      "id": 12,
-      "title": "Task Evaluation",
-      "date": "2025-04-19",
-      "time": "08:00",
-      "duration": "1hr",
-      "color": "#ff0217"
-    }
-  ]
-  
+  {
+    "id": 1,
+    "title": "Survey Sparrow Assessment Submission",
+    "date": "2025-04-18",
+    "time": "15:00",
+    "duration": "1hr",
+    "color": "#ff0157"
+  },
+  {
+    "id": 2,
+    "title": "Code Edit",
+    "date": "2025-04-18",
+    "time": "17:00",
+    "duration": "2hr",
+    "color": "#FF6EC7"
+  },
+  {
+    "id": 3,
+    "title": "RST Assessment",
+    "date": "2025-04-20",
+    "time": "15:00",
+    "duration": "2hr",
+    "color": "#FFFF33"
+  },
+  {
+    "id": 4,
+    "title": "Presentation",
+    "date": "2025-04-17",
+    "time": "15:00",
+    "duration": "2hr",
+    "color": "#ff5650"
+  },
+  {
+    "id": 5,
+    "title": "RP Evaluation",
+    "date": "2025-05-06",
+    "time": "10:00",
+    "duration": "2hr",
+    "color": "#FF00FF"
+  },
+  {
+    "id": 6,
+    "title": "DUS Assessment",
+    "date": "2025-04-20",
+    "time": "16:00",
+    "duration": "2hr",
+    "color": "#00FFFF"
+  },
+  {
+    "id": 7,
+    "title": "Game Code Complete",
+    "date": "2025-04-22",
+    "time": "16:00",
+    "duration": "1hr",
+    "color": "#F8F32B"
+  },
+  {
+    "id": 8,
+    "title": "RP Final Draft Report",
+    "date": "2025-04-22",
+    "time": "17:00",
+    "duration": "2hr",
+    "color": "#40E0D0"
+  },
+  {
+    "id": 9,
+    "title": "Meeting with Guide",
+    "date": "2025-04-22",
+    "time": "19:00",
+    "duration": "2hr",
+    "color": "#8A2BE2"
+  },
+  {
+    "id": 10,
+    "title": "Swimming",
+    "date": "2025-04-22",
+    "time": "20:00",
+    "duration": "2hr",
+    "color": "#DA70D6"
+  },
+  {
+    "id": 11,
+    "title": "Grand Viva",
+    "date": "2025-05-07",
+    "time": "08:00",
+    "duration": "1hr",
+    "color": "#ff0187"
+  },
+  {
+    "id": 12,
+    "title": "Task Evaluation",
+    "date": "2025-04-19",
+    "time": "08:00",
+    "duration": "1hr",
+    "color": "#ff0217"
+  }
+]

@@ -9,6 +9,7 @@ import events from "../../data/events.json";
 import { useOutletContext } from "react-router-dom";
 dayjs.extend(isSameOrAfter);
 
+{/* Function to check if two events overlap */}
 const doesOverlap = (event, otherEvent) => {
   const start1 = dayjs(`${event.date} ${event.time}`);
   const end1 = start1.add(parseInt(event.duration), "hour");
@@ -21,6 +22,7 @@ const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(dayjs());
   const { darkMode } = useOutletContext();
 
+  {/*variables to define the start and end of the month */}
   const today = dayjs();
   const startOfMonth = currentDate.startOf("month");
   const endOfMonth = currentDate.endOf("month");
@@ -31,12 +33,12 @@ const Calendar = () => {
   const rows = [];
   let days = [];
   let day = startDate;
-
+  {/* Loop to generate the calendar grid */}
   while (day.isBefore(endDate, "day")) {
     for (let i = 0; i < 7; i++) {
-      const dayEvents = events.filter((e) => dayjs(e.date).isSame(day, "day"));
-
-      days.push(
+      const dayEvents = events.filter((e) => dayjs(e.date).isSame(day, "day")); {/* Filter events for the current day */}
+      {/* framer-motion to add smooth animations and hover effects */}
+      days.push( 
         <motion.div
           key={day.format("DD-MM-YYYY")}
           initial={{ opacity: 0, scale: 0.9, y: 10 }}
@@ -47,9 +49,10 @@ const Calendar = () => {
             y: -4,
             transition: { type: "spring", stiffness: 200, damping: 15 },
           }}
+          
           className={`border p-2 h-24 overflow-hidden relative rounded-md text-xs cursor-pointer transition duration-300 transform
-            ${
-              day.isSame(today, "day")
+            ${ 
+              day.isSame(today, "day") 
                 ? darkMode
                   ? "bg-gradient-to-br from-[#0ff]/20 to-[#ff0]/20 border-2 border-[#0ff] shadow-[0_0_10px_#0ff,0_0_20px_#ff0] backdrop-blur-sm bg-opacity-30 text-[#39FF14] "
                   : "bg-gradient-to-br from-pink-100/30 to-pink-200/30 border-2 border-pink-400 shadow-inner shadow-pink-200 backdrop-blur-md text-pink-700"
@@ -105,6 +108,7 @@ const Calendar = () => {
     >
       {/* Main Content */}
       <main className="flex-1 p-6 overflow-y-auto h-screen">
+
         {/* Highlight Box for Events */}
         <EventHighlightBox
           darkMode={darkMode}

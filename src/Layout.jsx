@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import Sidebar from './components/calender/Sidebar';
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
+import Sidebar from "./components/calender/Sidebar";
 
-const Layout = () => {
+const Layout = () => { // Layout component
   const [darkMode, setDarkMode] = useState(true);
 
   return (
-    <div className={`min-h-screen w-full flex ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
+    <div
+      className={`min-h-screen w-full flex ${
+        darkMode ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
       {/* Sidebar on every page */}
       <Sidebar darkMode={darkMode} setDarkMode={setDarkMode} />
 

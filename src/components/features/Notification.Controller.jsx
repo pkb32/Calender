@@ -6,7 +6,7 @@ const notifications = [
   {
     id: 1,
     title: "New Event Added",
-    message: "The AI & Robotics Workshop has been scheduled for April 22.",
+    message: "The AI & Robotics Workshop has been scheduled for 22nd April.",
     time: "2 hours ago",
   },
   {

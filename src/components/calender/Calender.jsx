@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+import { motion } from "framer-motion";
 import EventHighlightBox from "./EventHighlightBox";
 import EventTag from "./EventTag";
 import CalenderGrid from "./CalenderGrid";
@@ -18,7 +19,7 @@ const doesOverlap = (event, otherEvent) => {
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(dayjs());
-   const { darkMode } = useOutletContext();
+  const { darkMode } = useOutletContext();
 
   const today = dayjs();
   const startOfMonth = currentDate.startOf("month");
@@ -33,16 +34,24 @@ const Calendar = () => {
 
   while (day.isBefore(endDate, "day")) {
     for (let i = 0; i < 7; i++) {
-      // Define dayEvents for the current day in the loop
       const dayEvents = events.filter((e) => dayjs(e.date).isSame(day, "day"));
+
       days.push(
-        <div
+        <motion.div
           key={day.format("DD-MM-YYYY")}
-          className={`border p-2 h-24 overflow-hidden relative rounded-md text-xs transition duration-300 cursor-pointer 
+          initial={{ opacity: 0, scale: 0.9, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          whileHover={{
+            scale: 1.05,
+            rotate: 0.5,
+            y: -4,
+            transition: { type: "spring", stiffness: 200, damping: 15 },
+          }}
+          className={`border p-2 h-24 overflow-hidden relative rounded-md text-xs cursor-pointer transition duration-300 transform
             ${
               day.isSame(today, "day")
                 ? darkMode
-                  ? "bg-gradient-to-br from-[#0ff]/20 to-[#ff0]/20 border-2 border-[#0ff] shadow-[0_0_10px_#0ff,0_0_20px_#ff0] backdrop-blur-sm bg-opacity-30 text-[#39FF14]"
+                  ? "bg-gradient-to-br from-[#0ff]/20 to-[#ff0]/20 border-2 border-[#0ff] shadow-[0_0_10px_#0ff,0_0_20px_#ff0] backdrop-blur-sm bg-opacity-30 text-[#39FF14] "
                   : "bg-gradient-to-br from-pink-100/30 to-pink-200/30 border-2 border-pink-400 shadow-inner shadow-pink-200 backdrop-blur-md text-pink-700"
                 : darkMode
                 ? "bg-black border-[#333] text-[#39FF14] hover:bg-[#111] hover:shadow-[0_0_10px_#FF00FF,0_0_20px_#00f0ff]"
@@ -68,29 +77,25 @@ const Calendar = () => {
               );
             })}
           </div>
-        </div>
+        </motion.div>
       );
 
       day = day.add(1, "day");
     }
+
     rows.push(
-      <div
+      <motion.div
         className="grid grid-cols-7 gap-2"
         key={day.format("DD-MM-YYYY") + "row"}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
       >
         {days}
-      </div>
+      </motion.div>
     );
     days = [];
   }
-
-  const handlePrevMonth = () => {
-    setCurrentDate(currentDate.subtract(1, "month"));
-  };
-
-  const handleNextMonth = () => {
-    setCurrentDate(currentDate.add(1, "month"));
-  };
 
   return (
     <div
@@ -98,8 +103,6 @@ const Calendar = () => {
         darkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
-      
-
       {/* Main Content */}
       <main className="flex-1 p-6 overflow-y-auto h-screen">
         {/* Highlight Box for Events */}

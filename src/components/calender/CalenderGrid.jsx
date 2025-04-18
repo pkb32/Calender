@@ -10,7 +10,17 @@ const CalendarGrid = ({ currentDate, setCurrentDate, rows, darkMode }) => {
   return (
     <div 
     className="relative p-[2px] rounded-xl overflow-hidden"
-    
+    style={
+      darkMode
+        ? {
+            boxShadow: `
+              0 0 50px rgba(255, 20, 147, 0.4)
+            `,
+          }
+        :{
+          border: "1px solid #f472b6", 
+        }
+    }
     >
       {/* Blurred animated border */}
       <motion.div
